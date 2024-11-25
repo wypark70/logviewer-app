@@ -30,7 +30,7 @@ import java.time.ZoneId;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/files")
 @Slf4j
 public class FileController {
     @GetMapping("/explore")
