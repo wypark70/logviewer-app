@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/logs")
 @Slf4j
 public class LogViewerController {
     @GetMapping("/read-last-lines")
@@ -64,10 +64,6 @@ public class LogViewerController {
                 Map<String, Object> response = new HashMap<>();
                 response.put("message", "hello!!!");
                 return ResponseEntity.ok(response);
-            } else if (action.equals("world")) {
-                Map<String, Object> response = new HashMap<>();
-                response.put("message", "world!!!");
-                return ResponseEntity.ok(response);
             } else {
                 throw new RuntimeException("RuntimeException!!!");
             }
@@ -78,7 +74,7 @@ public class LogViewerController {
         }
     }
 
-    @GetMapping(value = "/logs/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter streamLogs(@RequestParam String filePath) {
         SseEmitter emitter = new SseEmitter(-1L); // no timeout
         ExecutorService executor = Executors.newSingleThreadExecutor();
